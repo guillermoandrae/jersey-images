@@ -13,7 +13,7 @@ functions:
     handler: ./bin/index.php
     description: ''
     layers:
-      - ${bref:layer.php-80}
+      - ${bref:layer.php-81}
     name: jersey-images
     role: arn:aws:iam::373834698398:role/AndraeAPIRole
 
