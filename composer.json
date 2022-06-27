@@ -1,0 +1,43 @@
+{
+    "name": "guillermoandrae/jersey-images",
+    "description": "Accurate images of New Jersey, powered by Giphy.com",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "require": {
+        "guillermoandrae/php-lambda-api-gateway-response": "^1.1",
+        "php": "^8.1",
+        "ext-json": "*",
+        "guillermoandrae/php-debug": "^1.0",
+        "guzzlehttp/guzzle": "^7.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "squizlabs/php_codesniffer": "^3.7"
+    },
+    "scripts": {
+        "check-style": [
+            "phpcbf --standard=PSR2 --extensions=php src tests",
+            "phpcs --standard=PSR2 --extensions=php src tests"
+        ],
+        "test": [
+            "@check-style",
+            "phpunit --coverage-text --coverage-clover=./clover.xml"
+        ],
+        "test-html": [
+            "@check-style",
+            "phpunit --coverage-text --coverage-html report",
+            "php -S localhost:8080 -t report/ > report/phpd.log 2>&1"
+        ],
+        "invoke": [
+            "serverless invoke -f jersey-images"
+        ],
+        "deploy": [
+            "serverless deploy"
+        ]
+    }
+}
